@@ -1,8 +1,8 @@
 title = "Hugo: A Fast and Flexible Website Generator"
 baseurl = "http://hugo.yushuangqi.com/"
 MetaDataFormat = "yaml"
-pluralizeListTitles = false
-
+pluralizeListTitles = false 
+uglyURLs = true
 [params]
   description = "Documentation of Hugo, a fast and flexible static site generator built with love by spf13, bep and friends in Go"
   author = "Steve Francia (spf13) and friends"
