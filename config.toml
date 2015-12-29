@@ -1,11 +1,12 @@
 title = "Hugo: A Fast and Flexible Website Generator"
-baseurl = "http://gohugo.io/"
+baseurl = "http://hugo.yushuangqi.com/"
 MetaDataFormat = "yaml"
 pluralizeListTitles = false
 
 [params]
   description = "Documentation of Hugo, a fast and flexible static site generator built with love by spf13, bep and friends in Go"
   author = "Steve Francia (spf13) and friends"
+  lang= "zh-CN"
 
 [taxonomies]
   tag = "tags"
@@ -42,7 +43,7 @@ pluralizeListTitles = false
     pre = "<i class='fa fa-heart'></i>"
     weight = -110
 [[menu.main]]
-    name = "Getting Started"
+    name = "入门"
     identifier = "getting started"
     pre = "<i class='fa fa-road'></i>"
     weight = -100
@@ -107,3 +108,8 @@ pluralizeListTitles = false
     pre = "<i class='fa fa-space-shuttle'></i>"
     weight = -20
     url = "/commands/"
+[[menu.main_zh]]
+    name = "入门"
+    identifier = "getting started2"
+    pre = "<i class='fa fa-road'></i>"
+    weight = -100
