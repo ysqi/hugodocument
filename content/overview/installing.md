@@ -42,7 +42,7 @@ and <i class="fa fa-apple"></i>&nbsp;OS&nbsp;X (Darwin)
 
 Hugo有一个可选项配置是依赖于语法高亮插件 Pygments。
 
-如果你想在文档中使用[语法高亮扩展功能](/extras/highlighting/)，那么你就需要安装基于Python开发的Pygments程序。Pygments使用见[Pygments官网](http://pygments.org/)。
+如果你想在文档中使用[语法高亮扩展功能]({{< relref "extras/highlighting.md">}})，那么你就需要安装基于Python开发的Pygments程序。Pygments使用见[Pygments官网](http://pygments.org/)。
 
 ## 更新 Hugo
 

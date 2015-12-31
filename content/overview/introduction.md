@@ -72,45 +72,45 @@ Hugo拥有下列功能特点：
 
   * 极速生成 (~1&nbsp;ms/页面)
   * 完全垮平台支持：运行在 <i class="fa fa-apple"></i>&nbsp;Mac OS&nbsp;X, <i class="fa fa-linux"></i>&nbsp;Linux, <i class="fa fa-windows"></i>&nbsp;Windows,更多!
-  * 简易 [安装](/overview/installing/)
-  * 写作时[自动更新](/extras/livereload/)，[快速](/overview/usage/)渲染网页
+  * 简易 [安装](({{< relref "overview/installing.md" >}})
+  * 写作时[自动更新](({{< relref "extras/livereload.md" >}})，[快速](({{< relref "overview/usage.md">}})渲染网页
   * 完美的主题支持
   * 可任意地方部署网站
 
 ### 组织结构
 
-  * 简约的 [组织结构](/content/organization/)
-  * 支持 [网站子目录](/content/sections/)
-  * 完全自定义 [URL](/extras/urls/)
-  * 支持可配置包含标签和分类的[分类模型](/taxonomies/overview/)， 可自定义属于你的内容组织结构。
-  * 按你所期望的方式进行[内容排序](/content/ordering/)
-  * 自动生成 [目录](/extras/toc/)
+  * 简约的 [组织结构]({{< relref "content/organization.md" >}})
+  * 支持 [网站子目录]({{< relref "content/sections.md" >}})
+  * 完全自定义 [URL]({{< relref "extras/urls.md" >}})
+  * 支持可配置包含标签和分类的[分类模型]({{< relref "taxonomies/overview.md" >}})， 可自定义属于你的内容组织结构。
+  * 按你所期望的方式进行[内容排序]({{< relref "content/ordering.md" >}})
+  * 自动生成 [目录]({{< relref "extras/toc.md" >}})
   * 动态创建目录
-  * [完美URL](/extras/urls/) 支持
-  * 支持[永久链接](/extras/permalinks/) 模式
-  * [别名](/extras/aliases/) (重定向)
+  * [完美URL]({{< relref "extras/urls.md" >}}) 支持
+  * 支持[永久链接]({{< relref "extras/permalinks.md" >}}) 模式
+  * [别名]({{< relref "extras/aliases.md" >}}) (重定向)
 
 ### 内容功能
 
-  * 原始支持 [Markdown](/content/example/) 写作
-    * 通过外部工具支持其他语言, 见[所支持的格式](/content/supported-formats)
-  * 支持TOML, YAML and JSON 元数据[格式](/content/front-matter/)
-  * 完全[自定义首页](/layout/homepage/)
-  * 支持多种 [内容格式](/content/types/)
-  * 自动或者自定义[摘要](/content/summaries/)
-  * [短代码](/extras/shortcodes/) 方式在Markdown中嵌入富文本
-  * ["阅读用时"](/layout/variables/) 功能
-  * ["内容字数"](/layout/variables/) 功能
+  * 原始支持 [Markdown]({{< relref "content/example.md" >}}) 写作
+    * 通过外部工具支持其他语言, 见[所支持的格式]({{< relref "content/supported-formats)
+  * 支持TOML, YAML and JSON 元数据[格式]({{< relref "content/front-matter.md" >}})
+  * 完全[自定义首页]({{< relref "layout/homepage.md" >}})
+  * 支持多种 [内容格式]({{< relref "content/types.md" >}})
+  * 自动或者自定义[摘要]({{< relref "content/summaries.md" >}})
+  * [短代码]({{< relref "extras/shortcodes.md" >}}) 方式在Markdown中嵌入富文本
+  * ["阅读用时"]({{< relref "layout/variables.md" >}}) 功能
+  * ["内容字数"]({{< relref "layout/variables.md" >}}) 功能
 
 ### 附件功能
 
-  * 集成支持 [Disqus](https://disqus.com/) 评论
-  * 集成支持 [Google Analytics](https://google-analytics.com/) 
-  * 自动生成 [RSS](/layout/rss/)
-  * 支持 [Go](http://golang.org/pkg/html/template/), [Amber](https://github.com/eknkc/amber) 以及 [Ace](http://ace.yoss.si/) HTML 语言模板
-  * 由[Pygments](http://pygments.org/) 提供语法[高亮](/extras/highlighting/)  
+  * 集成支持 [Disqus](https://disqus.com.md" >}}) 评论
+  * 集成支持 [Google Analytics](https://google-analytics.com.md" >}}) 
+  * 自动生成 [RSS]({{< relref "layout/rss.md" >}})
+  * 支持 [Go](http://golang.org/pkg/html/template.md" >}}), [Amber](https://github.com/eknkc/amber) 以及 [Ace](http://ace.yoss.si.md" >}}) HTML 语言模板
+  * 由[Pygments](http://pygments.org.md" >}}) 提供语法[高亮]({{< relref "extras/highlighting.md" >}})  
 
-看看接下来还有哪些新功能 [路线图](/meta/roadmap/).
+看看接下来还有哪些新功能 [路线图]({{< relref "meta/roadmap.md" >}}).
 
 ## 谁应该使用 Hugo?
 
@@ -159,8 +159,8 @@ different content types and flexible URLs.
 
 ## 下一步
 
- * [安装 Hugo](/overview/installing/)
- * [快速引导](/overview/quickstart/)
- * [加入邮件列表](/community/mailing-list/)
+ * [安装 Hugo]({{< relref "overview/installing.md" >}})
+ * [快速引导]({{< relref "overview/quickstart.md" >}})
+ * [加入邮件列表]({{< relref "community/mailing-list.md" >}})
  * [在GitHub上评论我们](https://github.com/spf13/hugo)
- * [参与讨论](http://discuss.gohugo.io/)
+ * [参与讨论](http://discuss.gohugo.io.md" >}})
