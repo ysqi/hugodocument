@@ -1,8 +1,8 @@
 ---
 date: 2014-03-24T20:00:00Z
-linktitle: Press
+linktitle: 动态
 notoc: true
-title: Press, Blogs and Media Coverage
+title: 新闻、文章和媒体报道
 weight: 20
 ---
 

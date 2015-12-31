@@ -3,12 +3,12 @@ baseurl = "http://hugo.yushuangqi.com/"
 MetaDataFormat = "yaml"
 pluralizeListTitles = false 
 uglyURLs = true
-languageCode = "zh-CN"
+languageCode = "zh"
 
 [params]
   description = "由Golang爱好者虞双齐维护的 Hugo中文版文档。Hugo是spf13和他得朋友使用 Go 开发的一个极速灵活的静态网站创建工具。"
   author = "虞双齐"
-  lang= "zh-CN"
+  lang= "zh"
   #指定大部分静态文件地址，主要用于 DNS 加速
   staticURL = "http://static.hugo.yushuangqi.com"
 
@@ -22,7 +22,7 @@ languageCode = "zh-CN"
     url = "https://github.com/spf13/hugo/releases"
     weight = -200
 [[menu.main]]
-    name = "产品案例"
+    name = "网站案例"
     pre = "<i class='fa fa-cubes'></i>"
     url = "/showcase/"
     weight = -180

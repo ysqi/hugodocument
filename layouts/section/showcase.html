@@ -1,12 +1,12 @@
 {{ partial "header.html" . }}
 
-   <h1 id="title">Hugo-built Sites (with source)</h1>
+   <h1 id="title">Hugo网站案例（含源代码）</h1>
         <div class="row">
         {{ range .Data.Pages.ByDate }}
             {{ .Render "thumbnail"}}
         {{ end }}
         </div>
   <br><br>
-  If you want to be added to this page, please send a <a href="https://github.com/spf13/hugo/pulls">pull request</a>.
+  如果你想添加到案例到本页，请发送<a href="https://github.com/spf13/hugo/pulls">请求</a>。
 
 {{ partial "footer.html" . }}
