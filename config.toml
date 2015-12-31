@@ -3,10 +3,11 @@ baseurl = "http://hugo.yushuangqi.com/"
 MetaDataFormat = "yaml"
 pluralizeListTitles = false 
 uglyURLs = true
+languageCode = "zh-CN"
 
 [params]
-  description = "Documentation of Hugo, a fast and flexible static site generator built with love by spf13, bep and friends in Go"
-  author = "Steve Francia (spf13) and friends"
+  description = "由Golang爱好者虞双齐维护的 Hugo中文版文档。Hugo是spf13和他得朋友使用 Go 开发的一个极速灵活的静态网站创建工具。"
+  author = "虞双齐"
   lang= "zh-CN"
   #指定大部分静态文件地址，主要用于 DNS 加速
   staticURL = "http://static.hugo.yushuangqi.com"

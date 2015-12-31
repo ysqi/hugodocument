@@ -1,6 +1,6 @@
 ---
 date: 2013-07-01
-linktitle: Quickstart
+linktitle: 快速入门
 menu:
   main:
     parent: getting started
