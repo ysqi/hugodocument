@@ -17,72 +17,72 @@ languageCode = "zh-CN"
   group = "groups"
 
 [[menu.main]]
-    name = "Download Hugo"
+    name = "下载Hugo"
     pre = "<i class='fa fa-download'></i>"
     url = "https://github.com/spf13/hugo/releases"
     weight = -200
 [[menu.main]]
-    name = "Site Showcase"
+    name = "产品案例"
     pre = "<i class='fa fa-cubes'></i>"
     url = "/showcase/"
     weight = -180
 [[menu.main]]
-    name = "Theme Showcase"
+    name = "主题浏览"
     pre = "<i class='fa fa-puzzle-piece'></i>"
     url = "http://themes.gohugo.io"
     weight = -170
 [[menu.main]]
-    name = "Press & Articles"
+    name = "动态"
     pre = "<i class='fa fa-bullhorn'></i>"
     url = "/community/press/"
     weight = -160
 [[menu.main]]
-    name = "Discuss Hugo"
+    name = "论坛"
     pre = "<i class='fa fa-comments'></i>"
     url = "http://discuss.gohugo.io/"
     weight = -150
 [[menu.main]]
-    name = "About Hugo"
+    name = "关于Hugo"
     identifier = "about"
     pre = "<i class='fa fa-heart'></i>"
     weight = -110
 [[menu.main]]
-    name = "入门"
+    name = "入门指引"
     identifier = "getting started"
     pre = "<i class='fa fa-road'></i>"
     weight = -100
 [[menu.main]]
-    name = "Content"
+    name = "写作"
     identifier = "content"
     pre = "<i class='fa fa-file-text'></i>"
     weight = -90
 [[menu.main]]
-    name = "Themes"
+    name = "主题"
     identifier = "themes"
     pre = "<i class='fa fa-desktop'></i>"
     weight = -85
 [[menu.main]]
     parent = "themes"
-    name = "Theme Showcase"
+    name = "主题浏览"
     url = "http://themes.gohugo.io"
     weight = -170
 [[menu.main]]
-    name = "Templates"
+    name = "模板"
     identifier = "layout"
     pre = "<i class='fa fa-columns'></i>"
     weight = -80
 [[menu.main]]
-    name = "Taxonomies"
+    name = "分类标签"
     identifier = "taxonomy"
     pre = "<i class='fa fa-tags'></i>"
     weight = -70
 [[menu.main]]
-    name = "Extras"
+    name = "附近功能"
     identifier = "extras"
     pre = "<i class='fa fa-gift'></i>"
     weight = -60
 [[menu.main]]
-    name = "Community"
+    name = "社区"
     identifier = "community"
     pre = "<i class='fa fa-group'></i>"
     weight = -50
@@ -92,28 +92,23 @@ languageCode = "zh-CN"
     url = "http://discuss.gohugo.io"
     weight = 150
 [[menu.main]]
-    name = "Tutorials"
+    name = "使用手册"
     identifier = "tutorials"
     pre = "<i class='fa fa-book'></i>"
     weight = -40
 [[menu.main]]
-    name = "Troubleshooting"
+    name = "常见问题"
     identifier = "troubleshooting"
     pre = "<i class='fa fa-wrench'></i>"
     weight = -30
 [[menu.main]]
-    name = "Tools"
+    name = "工具"
     url = "/tools/"
     pre = "<i class='fa fa-cogs'></i>"
     weight = -25
 [[menu.main]]
-    name = "Hugo Cmd Reference"
+    name = "Hugo命令参考"
     identifier = "commands"
     pre = "<i class='fa fa-space-shuttle'></i>"
     weight = -20
     url = "/commands/"
-[[menu.main_zh]]
-    name = "入门"
-    identifier = "getting started2"
-    pre = "<i class='fa fa-road'></i>"
-    weight = -100
