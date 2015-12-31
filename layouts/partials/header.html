@@ -6,15 +6,15 @@
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
     {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
     {{ .Hugo.Generator }}
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/favicon.ico" type="image/x-icon" />
 {{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
     <title>Hugo - {{ .Scratch.Get "title" }}</title>
 
-    <link href="/css/bootstrap-gohugo.css" rel="stylesheet">
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/style-responsive.css" rel="stylesheet" />
-    <link href="/css/monokai-sublime.css" rel="stylesheet" />
+    <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/bootstrap-gohugo.css" rel="stylesheet">
+    <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/style.css" rel="stylesheet">
+    <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/style-responsive.css" rel="stylesheet" />
+    <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/monokai-sublime.css" rel="stylesheet" />
 
   </head>
 
@@ -30,7 +30,7 @@
             </div>
 
             <!--logo start-->
-            <a href="/" class="logo"><img src="/img/hugo-logo.png" style="height: 40px; vertical-align: bottom;"> <span style="font-size: small; text-transform: none;">Document For v{{ .Hugo.Version }}</span></a>
+            <a href="/" class="logo"><img src="{{ with .Site.Params.staticURL}}{{.}}{{end}}/img/hugo-logo.png" style="height: 40px; vertical-align: bottom;"> <span style="font-size: small; text-transform: none;">Document For v{{ .Hugo.Version }}</span></a>
             <!--logo end-->
             <div class="top-nav notification-row">
                 <!-- notification dropdown end-->
