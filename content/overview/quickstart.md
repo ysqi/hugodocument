@@ -6,34 +6,33 @@ menu:
     parent: getting started
 next: /overview/installing
 prev: /overview/introduction
-title: Hugo Quickstart Guide
+title: Hugo 快速入门
 weight: 10
 ---
 
-> _Note: This quickstart depends on features introduced in Hugo v0.11.  If you have an earlier version of Hugo, you will need to [upgrade](/overview/installing/) before proceeding._
+> _注意: 本文章基于 Hugo v0.11写作，如果你使用的更早的 Hugo 版本，请在开始前先[升级]((/overview/installing/) Hugo。_
 
 {{% youtube w7Ft2ymGmfc %}}
 
-## Step 1. Install Hugo
+## 第一步， 安装 Hugo
 
-Go to [Hugo Releases](https://github.com/spf13/hugo/releases) and download the
-appropriate version for your OS and architecture.
+到 Github 下载你符合你操作系统的[Hugo安装包](https://github.com/spf13/hugo/releases)。
 
-Save the main executable as `hugo` (or `hugo.exe` on Windows) somewhere in your `PATH` as we will be using it in the next step.
+将安装包保存为文件名`hugo` (Window 下是`hugo.exe`)。
 
-More complete instructions are available at [Installing Hugo](/overview/installing/).
+更多的安装细节见 [Hugo安装指引](/overview/installing/)。
 
-## Step 2. Have Hugo Create a site for you
+## 第二步， 使用 Hugo 新建网站
 
-Hugo has the ability to create a skeleton site:
+使用Hugo能新建一个清晰简单结构的网站：
 
     $ hugo new site /path/to/site
 
-For the rest of the operations, we will be executing all commands from within the site directory.
+`/path/to/site`是你指定的网站存放位置，注意下面所有的命令都是直接在网站目录下执行：
 
     $ cd /path/to/site
 
-The new site will have the following structure
+刚新建网站目录结构如下：
 
       ▸ archetypes/
       ▸ content/
@@ -42,18 +41,17 @@ The new site will have the following structure
       ▸ static/
         config.toml
 
-Currently the site doesn’t have any content, nor is it configured.
+目前新建网站还是没有任何具体内容的，且没有进行任何配置，继续往下看。
 
-## Step 3. Create Some Content
+## 第三步， 添加些内容
 
-> If you used a different blogging platform such as Jekyll, Ghost or Wordpress and you
-want convert your content, take a look at this list of [ migration tools]({{< relref "tools/index.md#migration-tools" >}}).
+>  如果你用过类似的工具，如 Jekyll,Ghost 或者 Wordpress ，而又想将内容迁移过来的话，可参见列表：[ 迁移工具]({{< relref "tools/index.md#migration-tools" >}})。
 
-Hugo also has the ability to create a skeleton content page:
+Hugo 轻松的创建一个内容页面：
 
     $ hugo new about.md
 
-A new file is now created in `content/` with the following contents:
+此时会在目录`content/` 下新建一个文件，文件名为`about.md`,文件内容如下:
 
 ```
 +++
@@ -65,10 +63,10 @@ title = "about"
 
 ```
 
-Notice the date is automatically set to the moment you created the content.
+注意元数据`date`是在新建时自动填写的文件创建日期。
 
-Place some content in Markdown format below the `+++` in this file.
-For example:
+直接在符号`+++`后面编辑 Markdown 格式内容。
+例如：
 
 ```markdown
 ## A headline
@@ -76,30 +74,34 @@ For example:
 Some Content
 ```
 
-For fun, let’s create another piece of content and place some Markdown in it as well.
+更有趣的方式是，你可直接新建文档到其他文章：
 
     $ hugo new post/first.md
 
-The new file is located at `content/post/first.md`
+上面文件位置是 `content/post/first.md`。
 
-We still lack any templates to tell us how to display the content.
+接着我们可以使用一些主题模板来展示网站内容。
 
-## Step 4. Install some themes
+## 第四步， 安装Hugo主题
 
-Hugo has rich theme support and a growing set of themes to choose from.
-To install the latest version of all of the available Hugo themes, simply clone the entire **hugoThemes** repository from within your working directory:
+Hugo 拥有丰富的主题，越来越多的主题可供你选择，你可以一次性安装 Hugo 所有的最新主题， 只需要直接拷贝 **hugoThemes**库到网站目录下即可：
 
 ```bash
 $ git clone --depth 1 --recursive https://github.com/spf13/hugoThemes.git themes
 ```
 
-## Step 5. Run Hugo
+如果网速不太好，也可以[选择下载一个 Hugo 主题](http://themes.gohugo.io)，如：
+```bash
+$ mkdir themes
+$ cd themes
+$ git clone git@github.com:digitalcraftsman/hugo-icarus-theme.git icarus 
+```
 
-Hugo contains its own high-performance web server. Simply run `hugo
-server` and Hugo will find an available port and run a server with
-your content:
+## 第五步， 运行 Hugo
 
-    $ hugo server --theme=hyde --buildDrafts
+Hugo本身就含有高性能的 Web 服务器，直接运行 `hugo server` Hugo 使用本地的一个端口启动 Web 服务器，具体信息如下：
+
+    $ hugo server --theme=icarus --buildDrafts
     2 of 2 drafts rendered
     0 future content
     2 pages created
@@ -112,27 +114,24 @@ your content:
     Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
     Press Ctrl+C to stop
 
-We specified two options here:
+上面命令我们使用了两个可选参数，如下:
 
- * `--theme` to pick which theme;
- * `--buildDrafts` because we want to display our content, both set to draft status.
+ * `--theme` 表示使用哪个主题，`icarus`是目录`themes/`下的主题文件夹名称;
+ * `--buildDrafts` 表示草稿内容也一块显示，我们上面刚新建的内容，默认是草稿`draft = true`
 
-To learn about what other options hugo has, run:
+了解更多 Hugo 的参数信息，执行如下命令：
 
     $ hugo help
 
-To learn about the server options:
+想了解启动 Hugo 实时预览模式的参数信息，执行如下命令：
 
     $ hugo help server
 
-## Step 6. Edit Content
+## 第六步， 编辑内容
 
-Not only can Hugo run a server, but it can also watch your files for
-changes and automatically rebuild your site. Hugo will then
-communicate with your browser and automatically reload any open page.
-This even works in mobile browsers.
+Hugo 不仅仅是启动一个 Web 服务，同时它还可以实时监控文件变化，自动重新刷新打开的页面，这样就可以边编辑修改边实时同步预览，它还可以在手机浏览器上实时预览。 
 
-Stop the Hugo process by hitting <kbd>Ctrl</kbd>+<kbd>C</kbd>. Then run the following:
+同时按<kbd>Ctrl</kbd>+<kbd>C</kbd>键直接停止 Hugo. 运行信息如下：
 
     $ hugo server --theme=hyde --buildDrafts
     2 pages created
@@ -144,14 +143,11 @@ Stop the Hugo process by hitting <kbd>Ctrl</kbd>+<kbd>C</kbd>. Then run the foll
     Web Server is available at http://localhost:1313
     Press Ctrl+C to stop
 
-Open your [favorite editor](http://vim.spf13.com/), edit and save your content, and watch as Hugo rebuilds and reloads automatically.
+打开你钟爱的[编辑器](http://vim.spf13.com/), 编辑保存内容，Hugo 监控变化会自动更新。
 
-It’s especially productive to leave a browser open on a second monitor
-and just glance at it whenever you save. You don’t even need to tab to
-your browser. Hugo is so fast that the new site will be there before
-you can look at the browser in most cases.
+你一保存，浏览器立刻自动刷新显示，这是非常高效的，一眨眼间Hugo就飞快地更新建立网站，你都不需要等待多久，在编辑器和浏览器切换间，页面就已经被自动更新。 
 
-Change and save this file. Notice what happened in your terminal:
+当你保存文件后，你可看写打屏信息：
 
     Change detected, rebuilding site
     2015-11-27 15:13 +0100
@@ -163,16 +159,16 @@ Change and save this file. Notice what happened in your terminal:
     0 categories created
     in 11 ms
 
-## Step 7. Have fun
+## 第七步， 乐在其中
 
-The best way to learn something is to play with it.
+学习的最好方式是动手实践。
 
-Things to try:
+Hugo 实践路线参考：
 
- * Add a [new content file](/content/organization/)
- * Create a [new section](/content/sections/)
- * Modify [a template](/layout/templates/)
- * Create content with [TOML front matter](/content/front-matter/)
- * Define your own field in [front matter](/content/front-matter/)
- * Display that [field in the template](/layout/variables/)
- * Create a [new content type](/content/types/)
+ * 新增[内容页面](/content/organization/)
+ * 新增[节点](/content/sections/)
+ * 修改[模板](/layout/templates/)
+ * 创建[TOML文件头](/content/front-matter/)的内容页
+ * 在[文件头](/content/front-matter/)自定义字段信息
+ * 在[模板中显示字段](/layout/variables/)信息
+ * 新建[内容类型](/content/types/)
