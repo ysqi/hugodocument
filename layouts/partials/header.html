@@ -22,8 +22,9 @@
     {{ .Hugo.Generator }}
     <link rel="shortcut icon" href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/favicon.ico" type="image/x-icon" />
 {{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
-    <title>{{ .Scratch.Get "title" }}-Hugo中文文档</title>
-
+    <title>{{ .Scratch.Get "title" }}-{{.Site.Title}}</title>
+    {{ partial "opengraph.html" . }}
+ 
     <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/bootstrap-gohugo.css" rel="stylesheet">
     <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/style.css" rel="stylesheet">

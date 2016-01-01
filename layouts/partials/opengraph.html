@@ -1,0 +1,5 @@
+<meta property="og:title" content="{{ .Scratch.Get "title" }}" />
+<meta property="og:type" content="article" />
+{{ with .Description }}<meta property="og:description" content="{{ . }}" />{{ end }}
+<meta property="og:url" content="{{.Permalink}}" />
+<meta property=”og:site_name” content=”{{.Site.Title}}”/> 

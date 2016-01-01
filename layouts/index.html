@@ -12,7 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="description" content="{{with .Site.Params.description}}{{.}}{{end}}"> 
     {{with .Site.Params.author }}<meta name="author" content="{{ . }}">{{end}}
-    <title>Hugo中文文档</title>
+    <title>{{.Site.Title}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ with .Site.Params.staticURL}}{{.}}{{end}}/css/bootstrap-gohugo.css" rel="stylesheet">
