@@ -15,7 +15,7 @@ Hugo是一个通用型网站创建框架，技术层面来讲Hugo是一个静态
 Hugo 在你创建内容时便生成页面，Hugo 在写作时便可在本地实时预览。
  
 使用 Hugo 生成是非常快速且安全的。Hugo 网站可以部署到任意地方，因为它是静态的，
-包括[Heroku][], [GoDaddy][], [DreamHost][],[GitHub Pages][], [Google云][Google Cloud Storage], 
+包括[Heroku][], [GoDaddy][], [DreamHost][],[GitHub Pages][], [Google云][Google Cloud Storage], P
 [亚马逊云][Amazon S3] and [CloudFront][], 并且在CDNS下可以正常使用。Hugo 网站
 不需要昂贵的运行时环境，如 Ruby，Python ，PHP，JAVA 等等，同时也不依赖于数据库。
 全是因为Hugo创建的是静态网页。
@@ -72,8 +72,8 @@ Hugo拥有下列功能特点：
 
   * 极速生成 (~1&nbsp;ms/页面)
   * 完全垮平台支持：运行在 <i class="fa fa-apple"></i>&nbsp;Mac OS&nbsp;X, <i class="fa fa-linux"></i>&nbsp;Linux, <i class="fa fa-windows"></i>&nbsp;Windows,更多!
-  * 简易 [安装](({{< relref "overview/installing.md" >}})
-  * 写作时[自动更新](({{< relref "extras/livereload.md" >}})，[快速](({{< relref "overview/usage.md">}})渲染网页
+  * 简易 [安装]({{< relref "overview/installing.md" >}})
+  * 写作时[自动更新]({{< relref "extras/livereload.md" >}})，[快速]({{< relref "overview/usage.md">}})渲染网页
   * 完美的主题支持
   * 可任意地方部署网站
 
@@ -93,20 +93,20 @@ Hugo拥有下列功能特点：
 ### 内容功能
 
   * 原始支持 [Markdown]({{< relref "content/example.md" >}}) 写作
-    * 通过外部工具支持其他语言, 见[所支持的格式]({{< relref "content/supported-formats)
+    * 通过外部工具支持其他语言, 见[所支持的格式]({{< relref "content/supported-formats.md" >}})
   * 支持TOML, YAML and JSON 元数据[格式]({{< relref "content/front-matter.md" >}})
-  * 完全[自定义首页]({{< relref "layout/homepage.md" >}})
+  * 完全[自定义首页]({{< relref "templates/homepage.md" >}})
   * 支持多种 [内容格式]({{< relref "content/types.md" >}})
   * 自动或者自定义[摘要]({{< relref "content/summaries.md" >}})
   * [短代码]({{< relref "extras/shortcodes.md" >}}) 方式在Markdown中嵌入富文本
-  * ["阅读用时"]({{< relref "layout/variables.md" >}}) 功能
-  * ["内容字数"]({{< relref "layout/variables.md" >}}) 功能
+  * ["阅读用时"]({{< relref "templates/variables.md" >}}) 功能
+  * ["内容字数"]({{< relref "templates/variables.md" >}}) 功能
 
 ### 附件功能
 
   * 集成支持 [Disqus](https://disqus.com.md" >}}) 评论
   * 集成支持 [Google Analytics](https://google-analytics.com.md" >}}) 
-  * 自动生成 [RSS]({{< relref "layout/rss.md" >}})
+  * 自动生成 [RSS]({{< relref "templates/rss.md" >}})
   * 支持 [Go](http://golang.org/pkg/html/template.md" >}}), [Amber](https://github.com/eknkc/amber) 以及 [Ace](http://ace.yoss.si.md" >}}) HTML 语言模板
   * 由[Pygments](http://pygments.org.md" >}}) 提供语法[高亮]({{< relref "extras/highlighting.md" >}})  
 
