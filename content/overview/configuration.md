@@ -2,38 +2,31 @@
 aliases:
 - /doc/configuration/
 date: 2013-07-01
-linktitle: Configuration
 menu:
   main:
     parent: getting started
-next: /overview/source-directory
+next: /overview/source-directory.html
 notoc: true
-prev: /overview/usage
-title: Configuring Hugo
+prev: /overview/usage.html
+title: Hugo配置
 weight: 40
 ---
 
-The directory structure and templates provide the majority of the
-configuration for a site. In fact, a config file isn't even needed for many
-websites since the defaults follow commonly used patterns.
+网站目录结构和模板已经提供了大部分网站配置。
 
-Hugo expects to find the config file in the root of the source directory and
-will look there first for a `config.toml` file. If none is present, it will
-then look for a `config.yaml` file, followed by a `config.json` file.
+实际上，对于大部分常规格式的网站来说甚至是不需要配置文件的。
 
-The config file is a site-wide config. The config file provides directions to
-hugo on how to build the site as well as site-wide parameters and menus.
+这个配置文件是网站层面的配置，配置文件能更好的指导 Hugo 如何根据一些参数和菜单来创建一个网站。 
 
-## Examples
+## 例如
 
-The following is an example of a typical yaml config file:
+下面是 yaml 格式的配置文件样例：
 
     ---
     baseurl: "http://yoursite.example.com/"
     ...
 
-The following is an example of a toml config file with some of the default values.
-Values under `[params]` will populate the `.Site.Params` variable for use in templates:
+下面是 含大部分默认值的 toml 格式配置文件。 参数配置写在`[params]`下，在模板中可通过`.Site.Params`访问参数值，如`{{.Site.Params.author}}`。
 
     contentdir = "content"
     layoutdir = "layouts"
@@ -50,7 +43,7 @@ Values under `[params]` will populate the `.Site.Params` variable for use in tem
       description = "Tesla's Awesome Hugo Site"
       author = "Nikola Tesla"
 
-Here is a yaml configuration file which sets a few more options:
+再提供一个包含更多配置信息的 yaml 格式配置文件：
 
     ---
     baseurl: "http://yoursite.example.com/"
@@ -68,22 +61,22 @@ Here is a yaml configuration file which sets a few more options:
       SidebarRecentLimit: 5
     ...
 
-## Configuration variables
+## 参数配置
 
-Following is a list of Hugo-defined variables that you can configure and their current default values:
+下面是 Hugo 内部定义的可在配置文件中修改的参数，下面是默认值：
 
     ---
     archetypedir:               "archetype"
-    # hostname (and path) to the root, e.g. http://spf13.com/
+    # 网站根地址, 如： http://hugo.yushuangqi.com
     baseURL:                    ""
-    # include content marked as draft
+    # 是否编译时包括草稿内容
     buildDrafts:                false
-    # include content with publishdate in the future
+    # 是否编译时包括需再以后发布的内容
     buildFuture:                false
     # enable this to make all relative URLs relative to content root. Note that this does not affect absolute URLs.
     relativeURLs:               false
     canonifyURLs:               false
-    # config file (default is path/config.yaml|json|toml)
+    # 配置文件路径 (默认是 path/config.yaml|json|toml)
     config:                     "config.toml"
     contentdir:                 "content"
     dataDir:                    "data"
@@ -147,23 +140,23 @@ Following is a list of Hugo-defined variables that you can configure and their c
     watch:                      false
     ---
 
-## Ignore files on build
+## 编译时忽略文件
 
-The following inside `config.toml` will ignore files ending with `.foo` and `.boo` when building with `hugo`:
+下面是配置在`config.toml`，使用`hugo`编译时将忽略已`.foo` 和 `.boo` 结尾的文件：
 
 ```
 ignoreFiles = [ "\\.foo$", "\\.boo$" ]
 ```
 
-The above is a list of Regular Expressions, but note the escaping of the `\` to make TOML happy.
+上面是定义的是一个正则表达式列表，但需要注意在 TOML 格式配置文件中需要将**转义符**`\`转换为普通字符，`\\`。
 
 
 
-## Configure Blackfriday rendering
+## 配置 Blackfriday 渲染
 
-[Blackfriday](https://github.com/russross/blackfriday) is the [Markdown](http://daringfireball.net/projects/markdown/) rendering engine used in Hugo. The Blackfriday configuration in Hugo is mostly a set of sane defaults that should fit most use cases.
+[Blackfriday](https://github.com/russross/blackfriday) 是 Hugo内默认的[Markdown](http://daringfireball.net/projects/markdown/) 转换工具。 Blackfriday 的配置信息大部分已在 Hugo 中设置了默认值。 
 
-But Hugo does expose some options---as listed in the table below, matched with the corresponding flag in the Blackfriday source ([html.go](https://github.com/russross/blackfriday/blob/master/html.go) and [markdown.go](https://github.com/russross/blackfriday/blob/master/markdown.go)):
+但是 Hugo 也对外提供了些和Blackfriday的([html.go](https://github.com/russross/blackfriday/blob/master/html.go) 和 [markdown.go](https://github.com/russross/blackfriday/blob/master/markdown.go)) 相匹配的标志，如下：
 
 <table class="table table-bordered">
 <thead>
@@ -283,10 +276,10 @@ Its behavior can be modified with the <code>latexDashes</code> flag listed below
 </table>
 
 
-**Notes**
+**注意**
 
-1. These flags are **very case-sensitive** (as of Hugo v0.15)!
-2. These flags must be grouped under the `blackfriday` key and can be set on **both site and page level**. If set on page, it will override the site setting.  Example:
+1. 这些标志在 Hugo v0.15中是区分大小写的！
+2. 这些标志必需配置在节点`blackfriday`下，可以配置在**网站配置和页面文件**中。如果你配置在页面文件中将覆盖网站配置文件中的配置，比如：
 
 <table class="table">
 <thead>

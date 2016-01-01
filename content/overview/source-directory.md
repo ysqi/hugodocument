@@ -5,18 +5,16 @@ date: 2013-07-01
 menu:
   main:
     parent: getting started
-next: /content/organization
+next: /content/organization.html
 notoc: true
-prev: /overview/configuration
-title: Source Organization
+prev: /overview/configuration.html
+title: 源代码组织结构
 weight: 50
 ---
 
-Hugo takes a single directory and uses it as the input for creating a complete
-website.
+Hugo在一个单独的文件夹下工作，通过文件夹下内容创建一个完整的网站。
 
-
-The top level of a source directory will typically have the following elements:
+源代码文件夹的一级目录通常包含如下文件夹：
 
     ▸ archetypes/
     ▸ content/
@@ -26,20 +24,20 @@ The top level of a source directory will typically have the following elements:
     ▸ themes/
       config.toml
 
-Learn more about the different directories and what their purpose is:
+不同文件夹用途不同，访问下面内容了解更多：
 
-* [config](/overview/configuration/)
-* [data](/extras/datafiles/)
-* [archetypes](/content/archetypes/)
-* [content](/content/organization/)
-* [layouts](/layout/overview/)
-* [static](/themes/creation#toc_4)
-* [themes](/themes/overview/)
+* [config]({{< relref "overview/configuration.md" >}})
+* [data]({{< relref "extras/datafiles.md" >}})
+* [archetypes]({{< relref "content/archetypes.md" >}})
+* [content]({{< relref "content/organization.md" >}})
+* [layouts]({{< relref "templates/overview.md" >}})
+* [static]({{< relref "themes/creation.md#toc_4" >}})
+* [themes]({{< relref "themes/overview.md" >}})
 
 
 ## Example
 
-An example directory may look like:
+一个网站结构示例如下：
 
     .
     ├── config.toml
@@ -86,8 +84,8 @@ An example directory may look like:
         ├── css
         └── js
 
-This directory structure tells us a lot about this site:
+从这个目录结构可得知网站的大部分信息：
 
-1. The website intends to have two different types of content: *posts* and *quotes*.
-2. It will also apply two different taxonomies to that content: *categories* and *tags*.
-3. It will be displaying content in 3 different views: a list, a summary and a full page view.
+1. 这个网站的内容包含两种类型: *posts* 和 *quotes*.
+2. 内容也含有两种分类：*categories* 和 *tags*.
+3. 内容显示有三种视图：列表, 摘要 和 全文页。
