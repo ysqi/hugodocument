@@ -5,8 +5,8 @@ date: 2013-07-01
 menu:
   main:
     parent: getting started
-next: /overview/usage
-prev: /overview/quickstart
+next: /overview/usage.html
+prev: /overview/quickstart.html
 title: 安装Hugo
 weight: 20
 ---

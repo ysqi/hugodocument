@@ -4,7 +4,7 @@ linktitle: 介绍
 menu:
   main:
     parent: getting started
-next: /overview/quickstart
+next: /overview/quickstart.html
 title: Hugo介绍
 weight: 5
 ---

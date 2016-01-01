@@ -4,8 +4,8 @@ linktitle: 快速入门
 menu:
   main:
     parent: getting started
-next: /overview/installing
-prev: /overview/introduction
+next: /overview/installing.html
+prev: /overview/introduction.html
 title: Hugo 快速入门
 weight: 10
 ---
