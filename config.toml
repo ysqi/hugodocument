@@ -52,7 +52,7 @@ languageCode = "zh"
     pre = "<i class='fa fa-road'></i>"
     weight = -100
 [[menu.main]]
-    name = "写作"
+    name = "内容"
     identifier = "content"
     pre = "<i class='fa fa-file-text'></i>"
     weight = -90

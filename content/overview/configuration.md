@@ -10,6 +10,7 @@ notoc: true
 prev: /overview/usage.html
 title: Hugo配置
 weight: 40
+toc: true
 ---
 
 网站目录结构和模板已经提供了大部分网站配置。

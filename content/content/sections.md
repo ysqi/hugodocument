@@ -3,19 +3,14 @@ date: 2013-07-01
 menu:
   main:
     parent: content
-next: /content/types
+next: /content/types.html
 notoc: true
-prev: /content/front-matter
-title: Sections
+prev: /content/front-matter.html
+title: 专栏Sections
 weight: 30
 ---
 
-Hugo believes that you organize your content with a purpose. The same structure
-that works to organize your source content is used to organize the rendered
-site (see [Organization](/content/organization/)). Following this pattern Hugo
-uses the top level of your content organization as **the Section**.
-
-The following example site uses two sections, "post" and "quote".
+Hugo 相信你所组织的内容结构是有目的地的。相同的结构来组织内容呈现到网站中，正如上面的示例，如何组织内容结构会真实的反应到目的地中,具体见[ 目录组织结构]({{< relref "content/organization.md" >}})。下面可看到在内容目录结构中顶级目录是是作为**专栏(Sections)** ，这个示例中有两个专栏，分别是 "post" and "quote"。
 
 {{< nohighlight >}}.
 └── content
@@ -29,23 +24,18 @@ The following example site uses two sections, "post" and "quote".
         └── second.md          // <- http://1.com/quote/second/
 {{< /nohighlight >}}
 
-## Section Lists
+## Section 列表
 
-Hugo will automatically create pages for each section root that list all
-of the content in that section. See [List Templates](/templates/list/)
-for details on customizing the way they appear.
+Hugo 自动为所有专题创建内容页列表。具体见 [列表模板]({{< relref "templates/list.md" >}})自定义设置列表页。
 
-## Sections and Types
+## 专题和类型
 
-By default everything created within a section will use the content type
-that matches the section name.
+默认情况下，节点下内容创建时都使用和类型相匹配的专题。 
 
-Section defined in the front matter have the same impact.
+专题也可定义在文件头中。
 
-To change the type of a given piece of content, simply define the type
-in the front matter.
+要改变一个给定的内容类型，只需要在文件头中定义`type`。
 
-If a layout for a given type hasn't been provided, a default type template will
-be used instead provided it exists.
+如果没有提供给定类型的布局文件，则使用默认模板。
 
 
