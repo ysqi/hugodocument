@@ -3,29 +3,26 @@ date: 2014-05-14T02:13:50Z
 menu:
   main:
     parent: content
-next: /content/ordering
-prev: /content/types
-title: Archetypes
+next: /content/ordering.html
+prev: /content/types.html
+linkTitle: 模型
+title: 内容模型archetype
 weight: 50
 toc: true
 ---
 
-Hugo v0.11 introduced the concept of a content builder. Using the
-command: <code>hugo new <em>[relative new content path]</em></code>,
-you can start a content file with the date and title automatically set.
-While this is a welcome feature, active writers need more.
+Hugo v0.11 介绍了内容创建概念，使用命令<code>hugo new <em>[内容文件相对路径]</em></code> 新建内容文件，内容文件将自动配置日期和标题。这是很受欢迎的功能，但经常写作的人来说还远远不够。 
 
-Hugo presents the concept of archetypes, which are archetypal content files
-with pre-configured [front matter](/content/front-matter) which will
-populate each new content file whenever you run the `hugo new` command.
+当你执行`hugo new`命令新建内容文件时，Hugo自动的在文件头中填充信息，这是 Hugo 内容模型的概念。
 
 
-## Example
+## 示例
 
-### Step 1. Creating an archetype
+### 第一步. 新建内容模型
 
-In this example scenario, we have a blog with a single content type (blog post).
-We will use ‘tags’ and ‘categories’ for our taxonomies, so let's create an archetype file with ‘tags’ and ‘categories’ pre-defined, as follows:
+在这个示例需求中，我们给一个博客写博文，文章类型为 blog post。同时还需给博文预定义标签tags和分类categories。
+
+如下：
 
 #### archetypes/default.md
 
@@ -36,16 +33,16 @@ categories = ["x", "y"]
 +++
 ```
 
-> __CAVEAT:__  Some editors (e.g. Sublime, Emacs) do not insert an EOL (end-of-line) character at the end of the file (i.e. EOF).  If you get a [strange EOF error](/troubleshooting/strange-eof-error/) when using `hugo new`, please open each archetype file (i.e.&nbsp;`archetypes/*.md`) and press <kbd>Enter</kbd> to type a carriage return after the closing `+++` or `---` as necessary.
+> __⚠️警告:__  有效编辑器 (如： Sublime, Emacs) 是不在文件末行上插入行尾结束符EOF的的。如果执行`hugo new`命令时出现 [strange EOF error](/troubleshooting/strange-eof-error/)错误，请打开内容模型文件 (即，&nbsp;`archetypes/*.md`)， 必需在结束符`+++`或者`---`后面按下<kbd>Enter</kbd>键。
 
 
-### Step 2. Using the archetype
+### 第二步，使用内容模型
 
-Now, with `archetypes/default.md` in place, let's create a new post in the `post` section with the `hugo new` command:
+前面我们已新建内容模型`archetypes/default.md`，我们就可以直接在专题`post`下使用`hugo new`新建博文。
 
     $ hugo new post/my-new-post.md
 
-Hugo would create the file with the following contents:
+此时，Hugo会新建一个如下内容的文件：
 
 #### content/post/my-new-post.md
 
@@ -58,13 +55,15 @@ categories = ["x", "y"]
 +++
 ```
 
-We see that the `title` and `date` variables have been added, in addition to the `tags` and `categories` variables which were carried over from `archetype/default.md`.
+我们看到`title` 和 `date` 元数据被添加，而扩展的元数据 `tags` 和 `categories` 也通过内容模型`archetype/default.md`被添加。
 
-Congratulations!  We have successfully created an archetype and used it for our new contents. But wait, what if I want to have different variables for another content type, like musicians? No problem.
+恭喜您，我们已成功创建了内容模型，并且将之使用在新内容上。但是，如果想在其他类型的内容上使用不同的元数据该怎么办呢？ 比如：音乐内容？当然没问题！
 
-### Creating custom archetypes
+### 第三步，新建自定义内容模型
 
-Earlier you created a new content type by adding a new subfolder to the content directory. In our case it's name would be `content/musician`. To use the corresponding archetype you just need to create a file named after the content type called `musician.md` in the `archetypes` directory, similar to the one below.
+以前的方式是，我们在 content 目录下新建子文件夹来添加内容文件。这样的话，新建内容应该是`content/musician`。新建内容文件时，便在`archetypes`目录下找到相匹配的内容模型`musician.md`来初始化新建内容文件。此时，你只需要在`archetypes`新建内容模型`musician`即可。
+
+一个简单示例： 
 
 #### archetypes/musician.md
 
@@ -76,11 +75,11 @@ genre = ""
 +++
 ```
 
-Now let's create a new musician.
+用此内容模型新建内容页：
 
     $ hugo new musician/mozart.md
 
-This time, Hugo recognizes the custom archetype and uses it instead of the default one. So the generated file's frontmatter now includes the variables `name`, `bio` and `genre`.
+此时Hugo 找到自定义的内容模型文件使用默认元数据新建内容页。因此刚生成的内容页包含元数据`name`, `bio` 和 `genre`：
 
 #### content/musician/mozart.md
 
@@ -94,35 +93,30 @@ genre = ""
 +++
 ```
 
-## Using a different front matter format
+## 文件头使用其他格式
 
-By default, the front matter will be created in the TOML format
-regardless of what format the archetype is using.
+默认情况下，新建内容页的文件头使用TOML 格式，而不会使用内容模型的内容格式。
 
-You can specify a different default format in your site-wide config file
-(e.g. `config.toml`) using the `MetaDataFormat` directive.
-Possible values are `"toml"`, `"yaml"` and `"json"`.
+但你可以在网站配置文件（`config.toml`）中参数`MetaDataFormat`来指定默认的文件头格式。 所支持文件头格式有：`"toml"`, `"yaml"` and `"json"`。
 
 
-## Which archetype is being used
+## 哪个内容模型被使用？
 
-The following rules apply:
+规则如下：
 
-* If an archetype with a filename that matches the content type being created, it will be used.
-* If no match is found, `archetypes/default.md` will be used.
-* If neither is present and a theme is in use, then within the theme:
-    * If an archetype with a filename that matches the content type being created, it will be used.
-    * If no match is found, `archetypes/default.md` will be used.
-* If no archetype files are present, then the one that ships with Hugo will be used.
+* 如果`archetypes`目录下存在和内容类型名称相匹配的内容模型文件，则使用该内容模型。
+* 如果没有找到，则使用默认的内容模型`archetypes/default.md`。
+* 否则的话，则在所使用的主题下查找：
+    * 如果`archetypes`目录下存在和内容类型名称相匹配的内容模型文件，则使用该内容模型。
+    * 如果没有找到，则使用默认的内容模型`archetypes/default.md`
+* 如果上面都没有找到内容模型文件，则使用 Hugo内部携带的内容模型。
 
-Hugo provides a simple archetype which sets the `title` (based on the
-file name) and the `date` in RFC&nbsp;3339 format based on
-[`now()`](http://golang.org/pkg/time/#Now), which returns the current time.
+Hugo 提供一个仅包含元数据 `title`（基于文件名) 和 `date` （ RFC&nbsp;3339 标准的当前时间
+[`now()`](http://golang.org/pkg/time/#Now) ）的简单内容模型。
 
-> *Note: `hugo new` does not automatically add `draft = true` when the user
-> provides an archetype.  This is by design, rationale being that
-> the archetype should set its own value for all fields.
-> `title` and `date`, which are dynamic and unique for each piece of content,
-> are the sole exceptions.*
+> *注意: `hugo new` 不会在使用自定义内容模型新建的内容文件中自动添加元数据`draft = true`。这个故意这样设计的，原因是内容默认元数据信息应该完全由内容模型来决定。*     
+> *当然对于每个内容文件来说，因元数据`title`和`date`是动态必须的，这是个特例设计。*
 
-Content type is automatically detected based on the path. You are welcome to declare which type to create using the `--kind` flag during creation.
+内容类型是根据文件路径自动检测的。欢迎在新建时使用`--kind`标志使用哪个内容模型，如：
+    
+    $ hugo new post/my-share-music.md --kind musician
