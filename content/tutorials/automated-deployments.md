@@ -3,103 +3,99 @@ authors:
 - Arjen Schwarz
 - Samuel Debruyn
 date: 2015-01-12
-linktitle: Automated deployments
+linktitle: 自动部署
 toc: true
 menu:
   main:
     parent: tutorials
-next: /tutorials/creating-a-new-theme
-prev: /community/contributing
-title: Automated deployments with Wercker
+next: /tutorials/creating-a-new-theme.html
+prev: /community/contributing.html
+title: 使用Wercker自动部署网站
 weight: 10
 ---
 
-# Automated deployments with Wercker
+# 使用Wercker自动部署网站
 
-In this tutorial we will set up a basic Hugo project and then configure a free tool called Wercker to automatically deploy the generated site any time we add an article. We will deploy it to GitHub pages as that is easiest to set up, but you will see that we can use anything. This tutorial takes you through every step of the process, complete with screenshots and is fairly long.
+本篇教程我们将使用免费工具Wercker通过简单配置实现新增文章自动部署。本教程将非常轻松的部署网站到Github中，将一步一步教你部署，还有截图。 
 
-The  assumptions made for this tutorial are that you know how to use git for version control, and have a GitHub account. In case you are unfamiliar with these, in their [help section](https://help.github.com/articles/set-up-git/) GitHub has an explanation of how to install and use git and you can easily sign up for a free GitHub account as well.
+开始前你需要知道如何使用版本控制工具Git,还需要一个Github账号。如果没有，你可以看Github的[帮助文档]((https://help.github.com/articles/set-up-git/))，将你如何快速使用Git和轻松注册免费的Github账户。
 
-## Creating a basic Hugo site
+## 新建Hugo网站
 
-There are already [pages](http://gohugo.io/overview/quickstart/) dedicated to describing how to set up a Hugo site so we will only go through the most basic steps required to get a site up and running before we dive into the Wercker configuration. All the work for setting up the project is done using the command line, and kept as simple as possible.
+在配置运行网站之前，你需要参考 [快速入门手册]({{< relref "overview/quickstart.md">}}) 文档。它指导你一步一步安装配置Hugo，全部操作基于命令，还是挺方便的。 
 
-Create the new site using the `hugo new site` command, and we move into it.
-
+使用命令`hugo new site`新建网站，再进入目录。
 ```bash
 hugo new site hugo-wercker-example
 cd hugo-wercker-example
 ```
 
-Add the herring-cove theme by cloning it into the theme directory using the following commands.
-
+使用命令克隆一份主题到主题包目录下。
 ```bash
 mkdir themes
 cd themes
 git clone https://github.com/spf13/herring-cove.git
 ```
-
-Cloning the project like this will conflict with our own version control, so we remove the external git configuration.
-
+克隆的主题会影响我们自己的版本控制，因此删除克隆主题下的git配置。
 ```bash
 rm -rf herring-cove/.git
 ```
-
-Let's add a quick **about** page.
+ 
+快速添加**about**页面
 
 ```bash
 hugo new about.md
 ```
 
-Now we'll edit contents/about.md to ensure it's no longer a draft and add some text to it.
+现在，我们可以编辑内容contents/about.md ,添加些文字，同时设置为非草稿。 
 
 ```bash
 hugo undraft content/about.md
 ```
 
-Once completed it's a good idea to do a quick check if everything is working by running
+完成后，一种便捷方式快速检查网站是否工作正常。
 
 ```bash
 hugo server --theme=herring-cove
 ```
-
-If everything is fine, you should be able to see something similar to the image below when you go to localhost:1313 in your browser.
+如果一切正常，你可以在浏览器打开*localhost:1313*，你应该可以看到和下面截图一样的信息。
 
 ![][1]
 
 [1]: /img/tutorials/creating-a-basic-hugo-site.png
 
-## Setting up version control
+## 设置版本控制
 
-Adding git to our project is done by running the `git init` command from the root directory of the project.
+在网站根目录下执行命令 `git init` 将我们的网站项目纳入版本管理中。 
 
 ```bash
 git init
 ```
 
-Running `git status` at this point will show you p entries: the **config.toml** file, the **themes** directory, the **contents** directory, and the **public** directory. We don't want the **public** directory version controlled however, as we will use wercker to generate that later on. Therefore, we'll add a gitignore file that will exclude this using the following command.
+执行命令 `git status` 被版本管理的内容有： **config.toml**文件 ,**themes**文件夹, **contents** 文件夹,以及 **public** 文件。但是我们不需要将 **public** 文件进行版本控制，这个目录最终是使用wercker自动生成的。需要通过命令将文件夹排除在git版本控制之外。
 
 ```bash
 echo "/public" >> .gitignore
 ```
 
-As we currently have no static files outside of the theme directory, Wercker might complain when we try to build the site later on. To prevent this, we simply have to add any file to the static folder. To keep it simple for now we'll add a robots.txt file that will give all search engines full access to the site when it's up.
+现在我们没有添加主题之外的任何静态文件，Wercker能够在编译网站时自动将主题合并到网站下。现在，我们可以添加些静态文件到static文件夹。比如添加个robots.txt静态文件，让所有搜索引擎都可以访问。 
 
 ```bash
 echo "User-agent: *\nDisallow:" > static/robots.txt
 ```
 
-After this we can add everything to the repository.
+现在我们可以将所有内容添加到版本库中。 
 
 ```bash
 git commit -a -m "Initial commit"
 ```
 
-## Adding the project to GitHub
+## 上传项目到Github
 
-First we'll create a new repository. You can do this by clicking on the **+** sign at the top right, or by going to https://github.com/new
+首先，我们需要到Github新建项目库(repository)。点击右上方的 **+**按钮，进入 https://github.com/new 页面。
 
-We then choose a name for the project (**hugo-wercker-example**). When clicking on create repository GitHub displays the commands for adding an existing project to the site. The commands shown below are the ones used for this site, if you're following along you will need to use the ones shown by GitHub. Once we've run those commands the project is in GitHub and we can move on to setting up the Wercker configuration.
+
+输入项目库名称 (**hugo-wercker-example**)，检查通过后，保存项目。将刚在Github新增的项目和本地项目建立关系，并推送本地项目到Github。
 
 ```bash
 git remote add origin git@github.com:YourUsername/hugo-wercker-example.git
@@ -110,57 +106,56 @@ git push -u origin master
 
 [2]: /img/tutorials/adding-the-project-to-github.png
 
-## Welcome to wercker
+## 欢迎使用wercker
 
-Let's start by setting up an account for Wercker. To do so we'll go to http://wercker.com and click on the **Sign up** button.
+开始前，需要注册wercker账户。进入http://wercker.com 页面，点击 **Sign up** 按钮注册.
 
 ![][3]
 
 [3]: /img/tutorials/wercker-sign-up.png
 
-## Register
+## 注册
 
-To make life easier for ourselves, we will then register using GitHub. If you don't have a GitHub account, or don't want to use it for your account, you can of course register with a username and password as well.
+为了简单方便，直接使用Github注册，如果不想使用Github注册，你就输入用户名，邮箱，密码进行注册。 
 
 ![][4]
 
 [4]: /img/tutorials/wercker-sign-up-page.png
 
-## Connect GitHub/Bitbucket
+## 连接到 GitHub/Bitbucket
 
-After you are registered, you will need to link your GitHub and/or Bitbucket account to Wercker. You do this by going to your profile settings, and then "Git connections" If you registered using GitHub it will most likely look like the image below. To connect a missing service, simply click on the connect button which will then send you to either GitHub or Bitbucket where you might need to log in and approve their access to your account.
-
+注册后，需要将Github/Bitucket关联到Wercker，在个人设置页面，点击  "Git connections" 进行关联。如果你是通过Github注册的则默认会自动关联(如下图)。点击" connect "关联授权。如果后续出现关联授权失败，需要重新登录Github或者Bitucker授权Wercker关联。 
 ![][5]
 
 [5]: /img/tutorials/wercker-git-connections.png
 
-## Add your project
+## 新建项目
 
-Now that we've got all the preliminaries out of the way, it's time to set up our application. For this we click on the **+ Create** button next to Applications, and then we'll choose to use GitHub as our provider.
+现在已做好前期准备工作，现在需要对项目进行配置即可，先点击**+ Create**按钮，再选择Github选项。
 
 ![][6]
 
 [6]: /img/tutorials/wercker-add-app.png
 
-## Select a repository
+## 选择项目库
 
-Clicking this will make Wercker show you all the repositories you have on GitHub, but you can easily filter them as well. So we search for our repository, select it, and then click on "Use selected repo".
+选择Github后，Wercker后罗列出你在Github上的项目库。如果项目太多，你也可以输入名称进行筛选。选中前面所创建的**hugo-wercker-example**项目库（不一定是这个，要看你前面创建的是哪个项目库），再点击"Use selected repo"。
 
 ![][7]
 
 [7]: /img/tutorials/wercker-select-repository.png
 
-## Select the repository owner
+## 选择项目库所有者
 
-In the next step, Wercker asks you to select the repository owner. Just select your own GitHub account and continue.
+这一步，Wercker会要你选择这个项目库的所有者。你只需选择你的Github账户即可，并继续。
 
 ![][8]
 
 [8]: /img/tutorials/wercker-select-owner.png
 
-## Configure access
+## 配置权限
 
-This step can be slightly tricky. As Wercker doesn't access to check out your private projects by default it will ask you what you want to do. When your project is public, as needs to be the case if you wish to use GitHub Pages, the top choice is recommended. When you use this it will simply check out the code in the same way anybody visiting the project on GitHub can do.
+这步比较棘手，默认情况下Wercker没法访问迁出你的私有项目，Wercker所有需要跟你确定访问方式。当你的项目是公开的，如使用GitHub Pages创建网站，则任何人都可以在Github上访问查看项目。
 
 ![][9]
 
@@ -168,41 +163,40 @@ This step can be slightly tricky. As Wercker doesn't access to check out your pr
 
 ## Wercker.yml
 
-Wercker will now attempt to create an initial *wercker.yml* file for you. Or rather, it will create the code you can copy into it yourself. Because there is nothing special about our project according to Wercker, we will simply get the `debian` box. So what we do now is create a *wercker.yml* file in the root of our project that contains the provided configuration, and after we finish setting up the app we will expand this file to make it actually do something.
+Wercker 会尝试为你初始化一个 *wercker.yml*文件，文件用于配置项目和Wercker的关联信息。因我们刚新建的项目没有特殊之处，可以直接**Copy  to clipborad**复制文件内容到新建 *wercker.yml*文件下。文件新建在到项目根目录下。后续配置些信息让其自动做些事情。 
 
 ![][10]
 
 [10]: /img/tutorials/werckeryml.png
 
-## Public or not
+## 是否公开
 
-This is a personal choice, you can make an app public so that everyone can see more details about it. This doesn't give you any real benefits either way in general, although as part of the tutorial I have of course made this app public so you can see it in action [yourself](https://app.wercker.com/#applications/5586dcbdaf7de9c51b02b0d5).
+这是可选的。一个公共的App是而任何人都可以看到它的细节信息。公开没有任何实际的好处，但作为教材的一部分，故公开了APP，因此你可以看到它的情况,[点击查看APP](https://app.wercker.com/#applications/5586dcbdaf7de9c51b02b0d5).
 
 ![][11]
 
 [11]: /img/tutorials/public-or-not.png
 
-## And we've got an app
+## 获得App
 
-The application is added now, and Wercker will be offering you the chance to trigger a build. As we haven't pushed up the **wercker.yml** file however, we will politely decline this option.
+现在已创建了App，Wercker会监控变化进行构建。现在我们还没有提交 **wercker.yml**文件到Github，故不会触发。 
 
 ![][12]
 
 [12]: /img/tutorials/and-we-ve-got-an-app.png
 
-## Adding steps
+## 添加步骤
 
-And now we're going to add the steps themselves. First, we go to the "Registry" action in the top menu and then search for "hugo build". The first result is the **Hugo-Build** task, which we select.
-
+现在需要添加执行步骤。首先点击页面左上方 "Registry"按钮，搜索  "hugo build",点击选择结果中第一个Task  **Hugo-Build** .
 ![][13]
 
 [13]: /img/tutorials/wercker-search.png
 
-## Using Hugo-Build
+## 使用 Hugo-Build
 
-Inside the details of this step you will see how to use it. At the top is a summary for the very basic usage, but when scrolling down you go through the README of the step which will usually contain more details about the advanced options available and a full example of using the step.
+点击进入详情页，有介绍如何使用。上面部分是一些基本用法说明，滚动到下面是README内容，是一个详细且完整的使用说明。
 
-We're not going to use any of the advanced features in this tutorial, so we'll return to our project and add the details we need to our wercker.yml file so that it looks like the below. Wercker also has a [page](http://devcenter.wercker.com/articles/werckeryml/validate.html) for validating wercker.yml files, and it's usually a good idea to do so before committing changes as minor typos might cause it to fail.
+本教材，我们还不需要使用任何高级功能。返回我的项目，将下面内容添加到** wercker.yml **文件中。在commit前可以有效的使用Wercker提供的一个[工具](http://devcenter.wercker.com/articles/werckeryml/validate.html)来验证配置文件 wercker.yml 的正确性。
 
 ```yaml
 box: debian
@@ -214,22 +208,22 @@ build:
         flags: --buildDrafts=true
 ```
 
-This concludes the first step, so we'll test that it all works as it should by pushing up our wercker.yml file and seeing the magic at work.
+这就完成了第一步，我们可以测试下，在commit **wercker.yml**文件后，将发生些神奇的事情。 
 
 ```bash
 git commit -a -m "Add wercker.yml"
 git push origin master
 ```
 
-Once completed a nice tick should have appeared in front of your first build, and if you want you can look at the details by clicking on it. However, we're not done yet as we still need to deploy it to GitHub Pages.
+ 一旦完成，你可以在你的第一个版本的前面看到一个漂亮的勾，你可以点击它查看详细信息。但是，现在我们还需要将网站部署到GitHub Pages上。 
 
 ![][14]
 
 [14]: /img/tutorials/using-hugo-build.png
 
-## Adding a GitHub Pages step
+## 添加 GitHub Pages 操作
 
-In order to deploy to GitHub Pages we need to add a deploy step. Once again searching through the Steps repository we find that the most popular step is the **lukevevier/gh-pages** step so we add the configuration for that to our wercker.yml file. Additionally we need to ensure that the box we run on has git and ssh installed. We can do this using the **install-packages** command, which then turns the wercker.yml file into this:
+在部署到GitHub Pages之前，需要添加一个部署执行步骤。再一次进入*repository*，输入搜索**lukevevier/gh-pages** 。lukevevier/gh-pages**需要添加配置信息到  wercker.yml 文件。执行部署操作前需要确保 box 中安装git和ssh，可以通过添加命令进行配置，具体如下： 
 
 ```yaml
 box: debian
@@ -249,26 +243,22 @@ deploy:
         basedir: public
 ```
 
-How does the GitHub Pages configuration work? We've selected a couple of things, first the domain we want to use for the site. Configuring this here will ensure that GitHub Pages is aware of the domain you want to use.
-
-Secondly we've configured the basedir to **public**, this is the directory that will be used as the website on GitHub Pages.
-
-And lastly, you can see here that this has a **$GIT_TOKEN** variable. This is used for pushing our changes up to GitHub and we will need to configure this before we can do that. We do this by going to our app's settings and clicking on **Deploy targets**. Now, we **Add deploy target** and select **Custom deploy**.
+如何让上面的配置生效？ 需要做几件事情，首先需要一个域名，配置好让GitHub Pages总能指向你的域名。第二点需要配置一个**public** 基础目录，这个目录专门用于存放网站内容。最后，你看上面的变量 **$GIT_TOKEN**,它用于推送修改内容到GitHub所需要的令牌。这个需要在Wercker中配置，打开App配置页面，点击**Deploy targets**新增一个**Add deploy target**,选择 **Custom deploy**。
 
 ![][15]
 
 [15]: /img/tutorials/adding-a-github-pages-step.png
 
-## Configure the deploy step
+## 配置部署
 
-Simply fill in the name, and make sure you enable **auto deploy** from the **master** branch. Next you add a variable for the **GIT_TOKEN**, for this you'll need to create an access token in GitHub. How to do that is described on a [GitHub help page](https://help.github.com/articles/creating-an-access-token-for-command-line-use/). With the deploy step configured in Wercker, we can push the updated wercker.yml file to GitHub and it will create the GitHub pages site for us. The example site we used here is accessible under hugo-wercker.ig.nore.me
+简单输入名称，启用从**master**分支自动部署。添加一个名为 **GIT_TOKEN**的变量，用于访问Github的令牌。 参考 [GitHub帮助文档](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)生成一个访问令牌。 这样，在Wercker的部署配置以完成。更新推送wercker.yml 文件到Github，Wercker将自动创建一个Gitub Pages 网站。本教程可以访问 http://hugo-wercker.ig.nore.me 。
 
 ![][16]
 
 [16]: /img/tutorials/configure-the-deploy-step.png
 
-## Conclusion
+## 总结
 
-From now on, any time you want to put a new post on your blog all you need to do is push your new page to GitHub and the rest will happen automatically. The source code for the example site used here is available on [GitHub](https://github.com/ArjenSchwarz/hugo-wercker-example), as is the [Hugo Build step](https://github.com/ArjenSchwarz/wercker-step-hugo-build) itself.
+现在，任何时候你需要发布一篇博文到网站，只需要提交上传博文内容到GitHub，其他就会自动完成。 当前教程示例源代码在[GitHub](https://github.com/ArjenSchwarz/hugo-wercker-example)上，基于  [Hugo Build step](https://github.com/ArjenSchwarz/wercker-step-hugo-build) 自动编译.
 
-If you want to see an example of how you can deploy to S3 instead of GitHub pages, take a look at [Wercker's documentation](http://devcenter.wercker.com/docs/deploy/s3.html) about how to set that up.
+如果你想知道如何部署到S3，可参见 [Wercker 帮助文档](http://devcenter.wercker.com/docs/deploy/s3.html) 进行配置。
