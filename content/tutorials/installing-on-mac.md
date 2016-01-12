@@ -6,8 +6,8 @@ toc: true
 menu:
   main:
     parent: tutorials
-next: /tutorials/installing-on-windows
-prev: /tutorials/github-pages-blog
+next: /tutorials/installing-on-windows.html
+prev: /tutorials/github-pages-blog.html
 title: 在Mac上安装Hugo
 weight: 10
 ---

@@ -1,77 +1,81 @@
 ---
 author: "Michael Henderson"
 date: 2015-03-30
-linktitle: Installing on Windows
+linktitle:  Windows上安装
 toc: true
 menu:
   main:
     parent: tutorials
-next: /tutorials/mathjax
-prev: /tutorials/installing-on-mac
-title: Installing on Windows
+next: /tutorials/mathjax.html
+prev: /tutorials/installing-on-mac.html
+title: 在Window上安装Hugo
 weight: 10
 ---
 
-# Installing Hugo on Windows
+# 在Window上安装Hugo
 
-This tutorial aims to be a complete guide to installing Hugo on your Windows computer.
+本教程指导你如何在Windows电脑上一步一步完成Hugo安装。 
 
-## Assumptions
+## 前提
 
-1. You know how to open a command prompt window.
-2. You're running a 64-bit version of Windows.
-3. Your website is `example.com`.
-4. You will use `D:\Hugo\Sites` as the starting point for your site.
-5. You will use `D:\Hugo\bin` to store executable files.
+1. 你需要知道如何在Window上执行命令。
+2. 你需要64位电脑。
+3. 你的网站 `example.com`。
+4. 你使用 `D:\Hugo\Sites` 目录开始新建网站。
+5. 你将使用 `D:\Hugo\bin` 来存储安装包。
 
-## Setup Your Directories
+## 设置目录
 
-You will need a place to store the Hugo executable, your content (the files that you build), and the generated files (the HTML that Hugo builds for you).
+你需要一个目录来存放Hugo安装包、网站（用于创建网站），生产内容（网站生成的HTML内容）。 
 
-1. Open up Windows Explorer.
-2. Create a new folder, `D:\Hugo`.
-3. Create a new folder, `D:\Hugo\bin`.
-4. Create a new folder, `D:\Hugo\Sites`.
+1. 打开我的电脑目录。
+2. 新建文件夹： `D:\Hugo`。
+3. 新建文件夹： `D:\Hugo\bin`。
+4. 新建文件夹： `D:\Hugo\Sites`。
 
-## Download the pre-built Hugo executable for Windows
+## 下载Hugo的Window版安装包
 
-One advantage of building Hugo in go is that there is just a single binary file to use. You don't need to run an installer to use it. Instead, you need to copy the binary to your hard drive. I'm assuming that you'll put it in `D:\Hugo\bin`. If you chose to place it somewhere else, you'll need to substitute that path in the commands.
+Hugo安装包是绿色的，不需要你点击进行安装，双击即可执行。你只需要拷贝Hugo.exe文件到硬盘即可，我们现在可以拷贝到`D:\Hugo\bin`目录。
 
-1. Open https://github.com/spf13/hugo/releases in your browser.
-2. The current version is hugo_0.15_windows_amd64.zip.
-3. Download that ZIP file and save it in your `D:\Hugo\bin` folder.
-4. Find that ZIP file in Windows Explorer and extract all the files from it.
-5. You should see a `hugo_0.13_windows_amd64.exe` file.
-6. Rename that file to `hugo.exe`.
-7. Verify that the `hugo.exe` file is in the `D:\Hugo\bin` folder. (It's possible that the extract put it in a sub-directory. If it did, use Windows Explorer to move it to `D:\Hugo\bin`.)
-8. Add the hugo.exe executable to your PATH with: `D:\Hugo\bin>set PATH=%PATH%;D:\Hugo\bin`
+1. 浏览器打开 https://github.com/spf13/hugo/releases 页面。
+2. 当前版本是 hugo_0.15_windows_amd64.zip。
+3. 下载ZIP文件保存到 `D:\Hugo\bin` 目录。
+4. 下载后，找到ZIP文件，解压到当前目录。
+5. 解压后，你可以看到 `hugo_0.13_windows_amd64.exe` 文件。
+6. 重命名为 `hugo.exe`。
+7. 确保 `hugo.exe` 文件是直接在 `D:\Hugo\bin` 文件夹下面. (有可能在子目录下，如果是的话，直接拷贝到 `D:\Hugo\bin`即可。)。
+8. 添加 hugo.exe 文件到环境变量PATH中，执行命令：
+ {{< nohighlight >}}C:\Program Files> cd D:\Hugo\bin
+C:\Program Files> D:
+D:\Hugo\bin> set PATH=%PATH%;D:\Hugo\bin
+{{< /nohighlight >}}
 
-## Verify the executable
+## 验证Hugo.exe
 
-Run a few commands to verify that the executable is ready to run and then build a sample site to get started.
+执行Hugo命令，验证Hugo是否可正常运行。
 
-1. Open a command prompt window.
+1. 打开命令窗口。
 
-2. At the prompt, type `hugo help` and press the Enter key. You should see output that starts with:
+2. 在窗口中,输入`hugo help` 按下回车键,你应该可以看到下面内容：
 
     {{< nohighlight >}}A Fast and Flexible Static Site Generator built with love by spf13 and friends in Go. Complete documentation is available at http://gohugo.io
 {{< /nohighlight >}}
 
-    If you do, then the installation is complete. If you don't, double-check the path that you placed the `hugo.exe` file in and that you typed that path correctly when you added it to your PATH variable. If you're still not getting the output, post a note on the Hugo discussion list (in the `Support` topic) with your command and the output.
+    如果你能看到，这说明安装完成。如果你没看到，需要再检查下是否有将 `hugo.exe` 文件目录添加到环境变量PATH中。如果还是不行，你可以将问题反馈到Hugo[讨论组](https://discuss.gohugo.io/)，并发布到**Support**组，贴出你所执行的命令以及显示结果。
 
-3. At the prompt, change your directory to the `Sites` directory.
+3. 在命令查看，切换到 `Sites` 文件夹.
 
     {{< nohighlight >}}C:\Program Files> cd D:\Hugo\Sites
 C:\Program Files> D:
 D:\Hugo\Sites>
 {{< /nohighlight >}}
 
-4. Run the command to generate a new site. I'm using `example.com` as the name of the site.
+4. 运行命令创建网站，我使用`example.com` 作为网站名称。
 
     {{< nohighlight >}}D:\Hugo\Sites> hugo new site example.com
 {{< /nohighlight >}}
 
-5. You should now have a directory at `D:\Hugo\Sites\example.com`.  Change into that directory and list the contents. You should get output similar to the following:
+5. 此时，出现个文件夹 `D:\Hugo\Sites\example.com`. 进入该文件夹，列出文件信息，你可以看到如下内容： 
 
     {{< nohighlight >}}D:\Hugo\Sites&gt;cd example.com
 D:\Hugo\Sites\example.com&gt;dir
@@ -89,8 +93,8 @@ D:\Hugo\Sites\example.com&gt;dir
                7 Dir(s)   6,273,331,200 bytes free
 {{< /nohighlight >}}
 
-You now have Hugo installed and a site to work with. You need to add a layout (or theme), then create some content. Go to http://gohugo.io/overview/quickstart/ for steps on doing that.
+现在，你已完成Hugo安装和新建网站工作目录，你可以添加布局或者主题文件，开始新建文章丰富网站，可参见[Hugo快速入门]({{<relref "overview/quickstart.md">}}) 手册。
 
-## Troubleshooting
+## 故障处理
 
-@dhersam has a nice video on common issues at https://www.youtube.com/watch?v=c8fJIRNChmU
+@dhersam 提供一个常见文件解决视频： https://www.youtube.com/watch?v=c8fJIRNChmU
