@@ -1,0 +1,31 @@
+build:
+  box: samueldebruyn/hugo-build
+  steps:
+    - script:
+        name: initialize git submodules
+        code: |
+            git submodule update --init --recursive
+    - arjen/hugo-build:
+        prod_branches: master
+    - samueldebruyn/minify:
+        only_on_branches: master
+    - script:
+        name: ls stuff
+        code: |
+          ls -haltr /pipeline/source/public
+deploy:
+  box: samueldebruyn/debian-git
+  steps:
+    - script:
+        name: ls output
+        code: |
+          ls -haltr /pipeline/output
+
+    - script:
+        name: ls source
+        code: |
+          ls -haltr /pipeline/source
+    - lukevivier/gh-pages:
+        token: $GIT_TOKEN
+        domain:  hugo.yushuangqi.com
+        basedir: public
